@@ -1,0 +1,19 @@
+<h2>Write Log</h2>
+<div class="alert alert-success" [hidden]="!success">
+  Log created successfully!
+</div>
+<form (ngSubmit)="writeLog(myForm)" novalidate #myForm="ngForm" class="top-space">
+  <div class="form-group" [ngClass]="{'has-error': (!myPerson.valid && myForm.submitted)}">
+    <label class="control-label" for="person">Person (*) </label>
+    <input type="text" class="form-control" id="person" name="person" placeholder="Name" [(ngModel)]="person"
+            #myPerson="ngModel" required>
+    <span class="help-block" [hidden]="myPerson.valid || !myForm.submitted || !myPerson.errors.required">Person is mandatory.</span>
+  </div>
+  <div class="form-group" [ngClass]="{'has-error': (!myMessage.valid && myForm.submitted)}">
+    <label class="control-label" for="message">Message (*) </label>
+    <textarea class="form-control" id="message" name="message" [(ngModel)]="message"
+              #myMessage="ngModel" required placeholder="Text"></textarea>
+    <span class="help-block" [hidden]="myMessage.valid || !myForm.submitted || !myMessage.errors.required">Message is mandatory.</span>
+  </div>
+  <button type="submit" class="btn btn-primary">Save</button>
+</form>
